@@ -11,8 +11,6 @@ priority = {
     50:"X", 51:"Y", 52:"Z"          
 }
 
-f = open("3.txt", "r")
-
 def halveStrLen(strLine):
     l = int(len(strLine)/2)
     return l
