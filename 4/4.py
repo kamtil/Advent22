@@ -53,9 +53,6 @@ def isEnveloped(list1, list2):
             continue
         else:
             enveloped = False
-    # if enveloped:
-    #    print(list1, "is enveloped by\n", list2)
-    #else:
     if not enveloped:
         enveloped = True
         for i in list2:
@@ -63,8 +60,6 @@ def isEnveloped(list1, list2):
                 continue
             else:
                 enveloped = False
-        # if enveloped:
-        #     print(list2, "is enveloped by\n", list1)
     return enveloped
 
 # checks if any value in a list is an element of another list (overlap)
@@ -73,14 +68,10 @@ def anyOverlap(list1,list2):
     for i in list1:
         if (i in list2):
             overlap = True
-    # if overlap:
-    #     print(list1, "overlaps with", list2)
     if not overlap:
         for i in list2:
             if (i in list1):
                 overlap = True
-    # if overlap:
-    #     print(list2, "overlaps with", list1)
     return overlap
 
 enumerate(sys.argv)
@@ -98,39 +89,28 @@ if arg1 == "--part1" or arg1 == "-part1":
         for line in f:
             e = splitRange(line, True)
             g = splitRange(line, False)
-            #print(g)
             h, i = createInts(e)
-            #print(h, i)
             hR = setRange(h,i)
-            #print(hR)
             j, k = createInts(g)
             jR = setRange(j,k)
-            #print(jR)
             s = isEnveloped(hR, jR)
-            #print(j, k)
             if s:
                 final +=1
-            #print(line)
         print("Enveloped ranges:", final)
+
 elif arg1 == "--part2" or arg1 == "-part2": 
     with open(arg2) as f:
         for line in f:
             e = splitRange(line, True)
-            #print(e)
             g = splitRange(line, False)
-            #print(g)
             h, i = createInts(e)
-            #print(h, i)
             hR = setRange(h,i)
-            #print(hR)
             j, k = createInts(g)
             jR = setRange(j,k)
-            #print(jR)
             s = anyOverlap(hR,jR)
-            #print(j, k)
             if s:
                 final +=1
-            #print(line)
         print("Overlapping ranges:", final)
+
 else: 
     print("Usage: 4.py [--part1 | --part2] <filename>")
