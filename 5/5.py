@@ -37,7 +37,6 @@ def createInteractiveCrateMap(fx, two_D_Array, height):
     fx.seek(0)
     for i in range(height):
         line = fx.readline()
-        #print(line)
         two_D_Array.append(viewCrates(line))
     fx.readline()
     fx.readline()
@@ -47,7 +46,6 @@ def createInteractiveCrateMap(fx, two_D_Array, height):
 def howHigh(intCrateMap, column):
     thisHigh = 0
     for i in range(len(intCrateMap)):
-        #print(intCrateMap[i][column-1])
         if intCrateMap[i][column-1].isalpha():
             thisHigh +=1
     return thisHigh
@@ -71,13 +69,10 @@ def createRow(intCrateMap):
 def moveCrates(intCrateMap, mov, src, dst):
     for i in range(mov):
         height = howHigh(intCrateMap, src)
-        #print(height)
-        #print(intCrateMap[height-1][src-1])
         srcCrate = intCrateMap[height-1][src-1]
         intCrateMap[height-1][src-1] = "-"
 
         height = howHigh(intCrateMap, dst)
-        #print(intCrateMap[height-1][dst-1])
         if height >= len(intCrateMap):
             createRow(intCrateMap)
             intCrateMap[height][dst-1] = srcCrate
@@ -88,13 +83,11 @@ def moveCrates(intCrateMap, mov, src, dst):
 def moveStack(intCrateMap, mov, src, dst):
     srcStack = []
     height = howHigh(intCrateMap, src)
-    #print(height)
     for i in range(mov):
         srcStack.append(intCrateMap[height-i-1][src-1])
         intCrateMap[height-i-1][src-1] = "-"
 
     height = howHigh(intCrateMap, dst)
-    #print(srcStack)
     if height+len(srcStack) >= len(intCrateMap):
         diff = (height+len(srcStack))-len(intCrateMap)
         for i in range(diff):
@@ -132,7 +125,6 @@ if arg1 == "--part1" or arg1 == "-part1":
         intCrateMap = createInteractiveCrateMap(f, intCrateMap, maxHeight)
         intCrateMap.reverse() # reverse order for easier understanding
         for line in f:
-            #print(line)
             m, s, d = parseCommand(line)
             moveCrates(intCrateMap, m, s, d)
         showCurrentPile()
@@ -145,7 +137,6 @@ elif arg1 == "--part2" or arg1 == "-part2":
         intCrateMap = createInteractiveCrateMap(f, intCrateMap, maxHeight)
         intCrateMap.reverse() # reverse order for easier understanding
         for line in f:
-            #print(line)
             m, s, d = parseCommand(line)
             moveStack(intCrateMap, m, s, d)
         showCurrentPile()
