@@ -31,7 +31,7 @@ elif arg1 == "--part2" or arg1 == "-part2":
     # PART 2
         line = f.readline()
         for i in range(len(line)):
-            if i < 14:
+            if i < 14:  # part 2 has a larger window length
                 window.append(line[i])
             else:
                 if len(window) != len(set(window)):
